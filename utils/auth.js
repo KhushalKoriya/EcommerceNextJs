@@ -9,7 +9,6 @@ export const refreshAccessToken = async (token,refreshToken) => {
         credentials: 'include',
       }
     });
-console.log(res,"jbjsbjbsjbj");
     const accessToken = res.config.headers.Authorization;
     console.log(accessToken,"accessToken");
   } catch (error) {

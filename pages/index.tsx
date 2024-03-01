@@ -5,9 +5,8 @@ import type { RootState } from '../store/store';
 import { loginUser } from '../store/redux/authThunks';
 import { useRouter } from 'next/router';
 const Index = () => {
-const dispatch = useDispatch();
-const { credentials, error } = useSelector((state: RootState) => state.login);
-console.log(credentials,"credentialscredentialscredentials");
+  const dispatch = useDispatch();
+  const { credentials, error } = useSelector((state: RootState) => state.login);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -36,9 +35,6 @@ console.log(credentials,"credentialscredentialscredentials");
     console.log(formData, "formData");
 
     try {
-      // Perform input validation here if needed
-
-      // Make API request to register the user
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
@@ -59,7 +55,6 @@ console.log(credentials,"credentialscredentialscredentials");
         password: '',
         confirmPassword: '',
       })
-      // Registration successful, you can navigate to another page or show a success message
       console.log('User registered successfully');
     } catch (error: any) {
       setErrors(error.message);
@@ -68,7 +63,7 @@ console.log(credentials,"credentialscredentialscredentials");
     }
   };
   const router = useRouter();
-  const onChangeHandler = (e:any) => {
+  const onChangeHandler = (e: any) => {
     const { name, value } = e.target;
     setLoginFormData((prevFormData) => ({
       ...prevFormData,
@@ -80,22 +75,18 @@ console.log(credentials,"credentialscredentialscredentials");
     console.log(loginFormData);
 
     try {
-      // Dispatch login action
-      const loggedIn = await dispatch(loginUser(loginFormData)as any);
-      console.log(  loggedIn.meta.requestStatus,"loggedIn");
-      if(loggedIn.meta.requestStatus === "fulfilled"){
+      const loggedIn = await dispatch(loginUser(loginFormData) as any);
+      console.log(loggedIn.meta.requestStatus, "loggedIn");
+      if (loggedIn.meta.requestStatus === "fulfilled") {
         router.push('/home');
-      }else{
-        console.log(error,"error");
-        
+      } else {
+        console.log(error, "error");
       }
-      
     } catch (error) {
-      // Handle errors
       console.error('An error occurred while logging in:', error);
     }
   };
-  
+
   const contFormsRef = useRef<HTMLDivElement>(null);
   const formLoginRef = useRef<HTMLDivElement>(null);
   const formSignUpRef = useRef<HTMLDivElement>(null);

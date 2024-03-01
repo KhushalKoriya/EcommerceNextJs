@@ -9,20 +9,14 @@ const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     let token = localStorage.getItem("user");
     let refreshToken = Cookies.get("refreshToken");
-    console.log(refreshToken,"refeshToken");
-    
-if (token !== null) {
-    console.log("token", token);
-    token = JSON.parse(token).token;
-    console.log("token", token);
-} else {
-    console.log("Token not found in localStorage");
-}
-console.log(token,"tokentokentokentokentoken");
-
+    if (token !== null) {
+      token = JSON.parse(token).token;
+    } else {
+      console.log("Token not found in localStorage");
+    }
     const refresh = async () => {
       try {
-        await refreshAccessToken(token,refreshToken);
+        await refreshAccessToken(token, refreshToken);
       } catch (error) {
         // Handle refresh token failure (e.g., redirect to login page)
         console.error('Failed to refresh access token:', error);
