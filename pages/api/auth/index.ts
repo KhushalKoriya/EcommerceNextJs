@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (typeof decoded === 'string' || !decoded.id) {
                 throw new Error('Invalid decoded token');
             }
-            const accessToken = jwt.sign({ id: decoded.id }, process.env.ACCESS_TOKEN_SECRET as Secret, { expiresIn: '15m' });
+            const accessToken = jwt.sign({ id: decoded.id }, process.env.ACCESS_TOKEN_SECRET as Secret, { expiresIn: '1m' });
             console.log("New access token:", accessToken);
             res.status(200).json({ success: true, accessToken });
         } catch (error) {

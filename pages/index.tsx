@@ -78,7 +78,7 @@ const Index = () => {
       const loggedIn = await dispatch(loginUser(loginFormData) as any);
       console.log(loggedIn.meta.requestStatus, "loggedIn");
       if (loggedIn.meta.requestStatus === "fulfilled") {
-        router.push('/home');
+        router.push('/components/pagesLayout/home');
       } else {
         console.log(error, "error");
       }

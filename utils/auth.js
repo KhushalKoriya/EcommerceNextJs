@@ -11,6 +11,7 @@ export const refreshAccessToken = async (token,refreshToken) => {
     });
     const accessToken = res.config.headers.Authorization;
     console.log(accessToken,"accessToken");
+    return res
   } catch (error) {
     console.error('Failed to refresh access token:', error.response.data.message);
   }
